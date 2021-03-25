@@ -1,0 +1,22 @@
+{
+  "name": "glad-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michalbuda/glad-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michalbuda/glad-bot/issues"
+  },
+  "homepage": "https://github.com/michalbuda/glad-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}

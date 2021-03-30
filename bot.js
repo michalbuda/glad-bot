@@ -9,6 +9,7 @@ client.commands = new Discord.Collection();
 
 const commandFolders = fs.readdirSync('./commands');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const folder of commandFolders) {
     const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
@@ -18,10 +19,15 @@ for (const folder of commandFolders) {
     }
 }
 
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args, client));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args, client));
+	}
+}
 
-client.once('ready', () => {
-    console.log(`Logged as ${client.user.tag}`);
-})
 
 client.on('message', message => {
 

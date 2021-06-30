@@ -7,6 +7,8 @@ const PREFIX = '_';
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+require('discord-buttons')(client);
+
 const commandFolders = fs.readdirSync('./commands');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));

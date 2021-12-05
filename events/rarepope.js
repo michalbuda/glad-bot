@@ -1,5 +1,3 @@
-const { Guild } = require("discord.js");
-
 module.exports = {
     name: 'ready',
     once: true,
@@ -15,9 +13,7 @@ module.exports = {
             const sendM = () => {
 
                 const channelBot = client.channels.cache.get('826509271671898122');
-                const czatPantera = client.channels.cache.get('589519489633222679');
                 channelBot.send('https://cdn.discordapp.com/emojis/695011124135067648.gif?v=1');
-                czatPantera.send('https://cdn.discordapp.com/emojis/695011124135067648.gif?v=1');
             }
 
             setTimeout( () => {

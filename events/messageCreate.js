@@ -13,6 +13,5 @@ module.exports = {
     execute(messageCreate) {
         console.log(`${messageCreate.author.tag} sent: ${messageCreate.content}`);
         con.query(`UPDATE messages SET msgCount = msgCount + 1 WHERE user_id = ${messageCreate.author.id}`)
-
     }
 }

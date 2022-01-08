@@ -7,13 +7,15 @@ module.exports = {
 
             const hoursLeft = () => {
                 let day = new Date();
-                return (-day + day.setHours(21, 37, 1, 0));
+                return (-day + day.setHours(1, 11, 1, 0));
             }
 
             const sendM = () => {
 
-                const channelBot = client.channels.cache.get('678977614215512105');
-                channelBot.send('https://cdn.discordapp.com/emojis/695011124135067648.gif?v=1');
+                // const channelBot = client.channels.cache.get('678977614215512105');
+                const channelTest = client.channels.cache.get('878388789108695150');
+                // channelBot.send('https://cdn.discordapp.com/emojis/695011124135067648.gif?v=1');
+                channelTest.send('https://cdn.discordapp.com/emojis/695011124135067648.gif?v=1');
             }
 
             setTimeout( () => {

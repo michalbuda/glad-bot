@@ -18,7 +18,7 @@ module.exports = {
 
             const hoursLeft = () => {
                 let day = new Date();
-                return (-day + day.setHours(1, 39, 59, 0));
+                return (-day + day.setHours(22, 59, 59, 0));
             }
 
             const sendM = () => {
@@ -79,7 +79,7 @@ module.exports = {
                 let dayToMs = 24*60*60*1000;
                 setInterval( () => {
                     sendM();
-                }, 60000 )
+                }, dayToMs )
             },  hoursLeft());
 
         }

@@ -1,6 +1,7 @@
-const { PEXELS } = require('../../config.json');
+const { PEXELS } = require('./config.json');
 const { createClient } = require('pexels') 
 const fetch = require('node-fetch');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     name: 'images',

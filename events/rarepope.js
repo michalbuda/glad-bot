@@ -3,7 +3,7 @@ module.exports = {
     once: true,
     execute(client) {
 
-        const rarepope = () => {
+        const rarePope = () => {
 
             const hoursLeft = () => {
                 let day = new Date();
@@ -12,7 +12,7 @@ module.exports = {
 
             const sendM = () => {
 
-                const channelBot = client.channels.cache.get('826509271671898122');
+                const channelBot = client.channels.cache.get('678977614215512105');
                 channelBot.send('https://cdn.discordapp.com/emojis/695011124135067648.gif?v=1');
             }
 
@@ -26,6 +26,6 @@ module.exports = {
            
         }
 
-        rarepope();
+        rarePope();
     }
 }

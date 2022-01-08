@@ -23,7 +23,7 @@
     "discord-buttons": "^3.2.1",
     "discord.js": "^13.3.1",
     "mysql": "^2.18.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.6",
     "pexels": "^1.2.1"
   }
 }

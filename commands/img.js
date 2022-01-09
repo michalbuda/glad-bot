@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const {createClient} = require("pexels");
-const {PEXELS} = require("../config.json");
+// const {PEXELS} = require("../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,7 +12,7 @@ module.exports = {
                 .setRequired(true)
         }),
     execute: async function (interaction) {
-        const pexels = createClient(PEXELS);
+        const pexels = createClient(process.env.PEXELS);
         const query = interaction.options.data[0].value;
         const random = (min, max) => {
             min = Math.ceil(min);

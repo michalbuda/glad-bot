@@ -24,7 +24,7 @@ module.exports = {
         const baseCurrInput = interaction.options.data[0].value;
         const targetCurrInput = interaction.options.data[1].value;
         const value = interaction.options.data[2].value;
-        fetch(`https://freecurrencyapi.net/api/v2/latest?apikey=bfc20480-70ea-11ec-8494-45aa1cb4fbf9&base_currency=${baseCurrInput}`).then(r => r.json())
+        fetch(`https://freecurrencyapi.net/api/v2/latest?${process.env.CURRENCY_API}&base_currency=${baseCurrInput}`).then(r => r.json())
         const { data } = await fetch(`https://freecurrencyapi.net/api/v2/latest?apikey=bfc20480-70ea-11ec-8494-45aa1cb4fbf9&base_currency=${baseCurrInput}`).then(r => r.json())
         const targetCurr = data[targetCurrInput.toUpperCase()]
         // console.log(interaction.options.data)

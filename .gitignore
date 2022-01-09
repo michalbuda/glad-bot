@@ -3,3 +3,4 @@ config.json
 bot-dev.js
 connectionConfig.js
 images.js
+deployCmd-dev.js

@@ -21,6 +21,6 @@ module.exports = {
             if (error) throw error;
             })
         })
-        pool.query(`UPDATE messages SET msgCount = msgCount + 1 WHERE user_id = ${messageCreate.author.id}`)
+        // pool.query(`UPDATE messages SET msgCount = msgCount + 1 WHERE user_id = ${messageCreate.author.id}`)
     }
 }

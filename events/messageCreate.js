@@ -12,8 +12,13 @@ const pool = mysql.createPool({
 module.exports = {
     name: 'messageCreate',
     once: false,
-    execute(messageCreate) {
-        console.log(`${messageCreate.author.tag} sent: ${messageCreate.content}`);
+    execute(messageCreate, client) {
+        if (messageCreate.author.bot) return
+
+        const channelLogs = client.channels.cache.get('930622679264944138');
+        channelLogs.send(`**${messageCreate.author.tag}** sent: *"${messageCreate.content}"* at ${messageCreate.createdAt}`)
+        // console.log(`${messageCreate.author.tag} sent: ${messageCreate.content} at ${messageCreate.createdAt}`);
+
         pool.getConnection((err, connection) => {
             if (err) throw err;
             connection.query(`UPDATE messages SET msgCount = msgCount + 1 WHERE user_id = ${messageCreate.author.id}`, (error) => {

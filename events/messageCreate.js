@@ -21,6 +21,13 @@ module.exports = {
             if (error) throw error;
             })
         })
+        pool.getConnection((err, connection) => {
+            if (err) throw err;
+            connection.query(`UPDATE messagesall SET messagesDaily = messagesDaily + 1`, (error) => {
+                connection.release();
+                if (error) throw error;
+            })
+        })
         // pool.query(`UPDATE messages SET msgCount = msgCount + 1 WHERE user_id = ${messageCreate.author.id}`)
     }
 }

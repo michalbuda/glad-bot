@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-// const {HOST, USER, PASSWORD, DATABASE} = require('../config.json');
+// const {HOST, USER, PASSWORD, DATABASE} = require("../config.json");
 
 const pool = mysql.createPool({
     host: process.env.HOST,
@@ -7,6 +7,13 @@ const pool = mysql.createPool({
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 })
+
+// const pool = mysql.createPool({
+//     host: HOST,
+//     user: USER,
+//     password: PASSWORD,
+//     database: DATABASE
+// })
 
 
 module.exports = {
@@ -26,9 +33,17 @@ module.exports = {
             if (error) throw error;
             })
         })
+        // pool.getConnection((err, connection) => {
+        //     if (err) throw err;
+        //     connection.query(`UPDATE messagesall SET messagesDaily = messagesDaily + 1`, (error) => {
+        //         connection.release();
+        //         if (error) throw error;
+        //     })
+        // })
+
         pool.getConnection((err, connection) => {
             if (err) throw err;
-            connection.query(`UPDATE messagesall SET messagesDaily = messagesDaily + 1`, (error) => {
+            connection.query(`UPDATE messages SET msgCount = msgCount + 1 WHERE user_id = 0`, (error) => {
                 connection.release();
                 if (error) throw error;
             })

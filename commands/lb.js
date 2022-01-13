@@ -11,12 +11,12 @@ const pool = mysql.createPool({
     database: process.env.DATABASE
 })
 
-// const printRes = (res, l) => {
-//     for(let i=0; i<l; i++){
-//         console.log(`${res[i].nickname} ma ${res[i].msgCount} wiadomości`)
-//     }
-// }
-
+// const pool = mysql.createPool({
+//     host: HOST,
+//     user: USER,
+//     password: PASSWORD,
+//     database: DATABASE
+// })
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,6 +27,10 @@ module.exports = {
         pool.getConnection((err, connection) => {
             if (err) throw err;
 
+            // connection.query(`select messagesDaily FROM heroku_f71d48d761a257a.messagesall`), (error, res) => {
+            //     let msgDaily = JSON.parse(JSON.stringify(res))
+            // }
+
             connection.query(`select * from heroku_f71d48d761a257a.messages ORDER BY msgCount DESC`, (error, res) => {
 
                 res = JSON.parse(JSON.stringify(res))
@@ -36,11 +40,12 @@ module.exports = {
                     .setDescription(`Ranking marnowania czasu na discordzie`)
                     .setThumbnail('https://cdn.7tv.app/emote/60b391c23c9b35aea9d2ad42/4x')
                     .addFields(
-                        { name: 'Pięciu wspanialych: ', value: `1. ${res[0].nickname} ma ${res[0].msgCount} wiadomości \n
-                    2. ${res[1].nickname} ma ${res[1].msgCount} wiadomości \n
-                    3. ${res[2].nickname} ma ${res[2].msgCount} wiadomości \n
-                    4. ${res[3].nickname} ma ${res[3].msgCount} wiadomości \n
-                    5. ${res[4].nickname} ma ${res[4].msgCount} wiadomości \n` }
+                        { name: `Dzisiaj wysłano: `, value: `${res[0].msgCount} wiadomości`},
+                        { name: 'Pięciu wspanialych: ', value: `1. ${res[1].nickname} ma ${res[1].msgCount} wiadomości \n
+                    2. ${res[2].nickname} ma ${res[2].msgCount} wiadomości \n
+                    3. ${res[3].nickname} ma ${res[3].msgCount} wiadomości \n
+                    4. ${res[4].nickname} ma ${res[4].msgCount} wiadomości \n
+                    5. ${res[5].nickname} ma ${res[5].msgCount} wiadomości \n` }
                     );
                 interaction.reply({embeds: [lbEmbed]});
                 connection.release()

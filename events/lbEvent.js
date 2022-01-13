@@ -25,7 +25,7 @@ module.exports = {
 
             const hoursLeft = () => {
                 let day = new Date();
-                return (-day + day.setHours(2, 29, 59, 0));
+                return (-day + day.setHours(22, 59, 59, 0));
             }
 
             const sendM = () => {
@@ -52,8 +52,6 @@ module.exports = {
 
                         // const channelBot = client.channels.cache.get('678977614215512105');
                         const channelTest = client.channels.cache.get('878388789108695150');
-                        console.log(`1. ${res[1].nickname} ma ${res[1].msgCount} wiadomości`)
-                        console.log(res)
                         channelTest.send({embeds: [lbEmbedEvent]});
                         connection.release()
                         if (error) throw error;
@@ -88,7 +86,7 @@ module.exports = {
                     setTimeout(() => {
                         resetMsg()
                     }, 1000)
-                }, 120000 )
+                }, dayToMs )
             },  hoursLeft());
 
         }

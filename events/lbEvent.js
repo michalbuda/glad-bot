@@ -25,30 +25,51 @@ module.exports = {
 
             const hoursLeft = () => {
                 let day = new Date();
-                return (-day + day.setHours(22, 59, 59, 0));
+                return (-day + day.setHours(1, 39, 59, 0));//(22, 59, 59, 0)
             }
 
             const sendM = () => {
+
+                const getEmote = (emoteId) => {
+                    return client.emojis.cache.get(emoteId)
+                }
+
+                const getGuild = (guildId) => {
+                    return client.guilds.cache.get(guildId)
+                }
 
                 pool.getConnection((err, connection) => {
                     if (err) throw err;
 
                     connection.query(`select * from heroku_f71d48d761a257a.messages ORDER BY msgCount DESC`, (error, res) => {
 
+                        const percentage = (position) => {
+                            return ((res[position].msgCount/res[0].msgCount)*100).toPrecision(3)
+                        };
+                        let emoji
+                        if(res[0].msgCount <= 1500) {
+                            emoji = getEmote('934512251031916574')
+                        } else if (res[0].msgCount > 1500 && res[0].msgCount < 4000){
+                            emoji = getEmote('934519911282258032')
+                        } else if (res[0].msgCount >= 4000){
+                            emoji = getEmote('934521182236057610')
+                        }
+
                         res = JSON.parse(JSON.stringify(res))
                         const lbEmbedEvent = new MessageEmbed()
-                                .setColor('#fcba03')
-                                .setTitle('Leaderboard dev test')
-                                .setDescription(`Ranking marnowania czasu na discordzie`)
-                                .setThumbnail('https://cdn.7tv.app/emote/60b391c23c9b35aea9d2ad42/4x')
-                                .addFields(
-                                    { name: `Dzisiaj wysłano: `, value: `${res[0].msgCount} wiadomości`},
-                                    { name: 'Pięciu wspanialych: ', value: `1. ${res[1].nickname} ma ${res[1].msgCount} wiadomości \n
-                            2. ${res[2].nickname} ma ${res[2].msgCount} wiadomości \n
-                            3. ${res[3].nickname} ma ${res[3].msgCount} wiadomości \n
-                            4. ${res[4].nickname} ma ${res[4].msgCount} wiadomości \n
-                            5. ${res[5].nickname} ma ${res[5].msgCount} wiadomości \n` }
-                                );
+                            .setColor('#FFB100')
+                            .setTitle(`${getGuild('824867261893574717').name} - ranking wysłanych wiadomości`)
+                            .setDescription(`Dzisiaj wysłano: **${res[0].msgCount}** wiadomości ${emoji}`)
+                            .setThumbnail('https://cdn.discordapp.com/attachments/934461660960276570/934462046714617906/3x.gif')//https://cdn.7tv.app/emote/60b391c23c9b35aea9d2ad42/4x https://media.discordapp.net/attachments/929574114405011458/934446722682339358/ezgif.com-gif-maker.gif
+                            .addFields(
+                                { name: 'Pięciu wspaniałych: ', value: `${getEmote('934534030290993152')} 1. **${res[1].nickname}** ma ${res[1].msgCount} wiadomości (${percentage(1)}%)\n
+                                ${getEmote('934541661881655367')} 2. **${res[2].nickname}** ma ${res[2].msgCount} wiadomości (${percentage(2)}%)\n
+                                ${getEmote('934540798366711848')} 3. **${res[3].nickname}** ma ${res[3].msgCount} wiadomości (${percentage(3)}%)\n
+                                ${getEmote('871042445993992212')} 4. **${res[4].nickname}** ma ${res[4].msgCount} wiadomości (${percentage(4)}%)\n
+                                ${getEmote('934532803213811722')} 5. **${res[5].nickname}** ma ${res[5].msgCount} wiadomości (${percentage(5)}%)\n` },
+                                { name: '\u200B', value: '\u200B' })
+                            .setTimestamp()
+                            .setFooter(`Powered by ${client.user.username}`, `${client.user.avatarURL()}`);
 
                         // const channelBot = client.channels.cache.get('678977614215512105');
                         const channelTest = client.channels.cache.get('878388789108695150');

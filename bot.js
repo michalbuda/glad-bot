@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {Client, Collection, Intents} = require('discord.js');
+const {Client, Collection, Intents, MessageEmbed} = require('discord.js');
 
 // const PREFIX = '_';
 
@@ -37,7 +37,13 @@ client.on('interactionCreate', async interaction => {
         await command.execute(interaction)
     } catch (error) {
         console.error(error)
-        await interaction.reply( {content: 'Oh no! An error has occured. 😓', ephemeral: true} )
+        const errorEmbed = new MessageEmbed()
+            .setColor('#d91d0f')
+            .setTitle(`O nie! Wystąpił błąd 🤬`)
+            .setImage('https://media.discordapp.net/attachments/934461660960276570/934595159927189504/noddersall.gif')
+            .setTimestamp()
+            .setFooter(`Error: ${error.message} \n ID: ${interaction.id} `)
+        await interaction.reply( {embeds: [errorEmbed], ephemeral: false} ) //'Oh no! An error has occured 😓'
     }
 })
 

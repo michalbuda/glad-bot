@@ -6,7 +6,7 @@ module.exports = {
         .setName('ping')
         .setDescription('Replies with Pong and logs current time'),
     async execute(interaction) {
-        fetch('http://worldtimeapi.org/api/timezone/Europe/Berlin').then(r => r.json())
+        fetch('http://worldtimeapi.org/api/timezone/Europe/Berlin').then(r => r.json()).catch(err=>console.error(err))
         const { datetime } = await fetch('http://worldtimeapi.org/api/timezone/Europe/Berlin').then(r => r.json())
         const sysTime = new Date()
         await interaction.reply(`Pong. Btw current time is: ${datetime.slice(11, -13)}.\nSystem time is: ${sysTime}`)

@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 const { MessageEmbed } = require('discord.js')
 const { SlashCommandBuilder } = require('@discordjs/builders');
-// const {HOST, USER, PASSWORD, DATABASE} = require("../config.json");
+const {HOST, USER, PASSWORD, DATABASE} = require("../config.json");
 
 
 const pool = mysql.createPool({
@@ -30,13 +30,14 @@ module.exports = {
             connection.query(`select * from heroku_f71d48d761a257a.messagesall`, (error, res) => {
 
                 res = JSON.parse(JSON.stringify(res))
+                let format = res[0].messagesAll
                 const lbEmbed = new MessageEmbed()
-                    .setColor('#0099ff')
-                    .setTitle('Leaderboard')
-                    .setDescription(`Ranking marnowania czasu na discordzie`)
-                    .setThumbnail('https://cdn.7tv.app/emote/60b391c23c9b35aea9d2ad42/4x')
-                    .addFields(
-                        { name: `W sumie wysłano: `, value: `${res[0].messagesAll} wiadomości!!!11oneone`});
+                    .setColor('#FFB100')//#5ad40d
+                    .setTitle(`${interaction.guild.name} - ranking wysłanych wiadomości`)
+                    .setDescription(`W sumie wysłano **${format.toLocaleString()}** wiadomości!`)
+                    .setThumbnail('https://cdn.discordapp.com/attachments/934461660960276570/934576288440676352/bruh.gif')
+                    .setTimestamp()
+                    .setFooter(`Powered by ${interaction.client.user.username}`, `${interaction.client.user.avatarURL()}`)
                 interaction.reply({embeds: [lbEmbed]});
                 connection.release()
                 if (error) throw error;

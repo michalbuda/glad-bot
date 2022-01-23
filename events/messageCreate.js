@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-// const {HOST, USER, PASSWORD, DATABASE} = require("../config.json");
+const {HOST, USER, PASSWORD, DATABASE} = require("../config.json");
 
 const pool = mysql.createPool({
     host: process.env.HOST,

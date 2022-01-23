@@ -1,5 +1,8 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const { MessageEmbed } = require('discord.js')
 const fetch = require("node-fetch");
+
+// const { CURRENCY_API } = require('../config.json')
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -24,8 +27,8 @@ module.exports = {
         const baseCurrInput = interaction.options.data[0].value;
         const targetCurrInput = interaction.options.data[1].value;
         const value = interaction.options.data[2].value;
-        fetch(`https://freecurrencyapi.net/api/v2/latest?${process.env.CURRENCY_API}&base_currency=${baseCurrInput}`).then(r => r.json())
-        const { data } = await fetch(`https://freecurrencyapi.net/api/v2/latest?apikey=bfc20480-70ea-11ec-8494-45aa1cb4fbf9&base_currency=${baseCurrInput}`).then(r => r.json())
+        fetch(`https://freecurrencyapi.net/api/v2/latest?${process.env.CURRENCY_API}&base_currency=${baseCurrInput}`).then(r => r.json()) //process.env.CURRENCY_API
+        const { data } = await fetch(`https://freecurrencyapi.net/api/v2/latest?apikey=${process.env.CURRENCY_API}&base_currency=${baseCurrInput}`).then(r => r.json()) //process.env.CURRENCY_API
         const targetCurr = data[targetCurrInput.toUpperCase()]
         // console.log(interaction.options.data)
         // console.log(targetCurr)
@@ -34,7 +37,22 @@ module.exports = {
         // console.log(data.length)
 
         let exchanged = value * targetCurr;
-        interaction.reply(`Waluta bazowa: ${baseCurrInput.toUpperCase()}\nWaluta docelowa: ${targetCurrInput.toUpperCase()}\nWartość waluty bazowej: ${value}\nWartość przeliczona: ${exchanged}`)
 
+        const exchangeEmbed = new MessageEmbed()
+            .setColor('#FFB100')
+            .setTitle(`Sprawdź kurs wybranych walut!`)
+            .setDescription(`Lista dostępnych walut: https://freecurrencyapi.net/`)
+            .setThumbnail(`${interaction.client.user.avatarURL()}`)
+            .addFields(
+                {name: `Wybrana waluta bazowa   `, value: `${baseCurrInput.toUpperCase()}`, inline: true},
+                {name: ` Wybrana waluta docelowa   `, value: `${targetCurrInput.toUpperCase()}`, inline: true},
+                {name: `Przeliczone wartości:`, value: `**${value}** ${baseCurrInput.toUpperCase()}  ➡  **${exchanged.toPrecision(4)}** ${targetCurrInput.toUpperCase()}`},
+                { name: '\u200B', value: '\u200B' }
+            )
+            .setTimestamp()
+            .setFooter(`Requested by: ${interaction.user.tag}`, `${interaction.user.avatarURL()}`)
+
+        interaction.reply({embeds: [exchangeEmbed]})
+//Waluta bazowa: ${baseCurrInput.toUpperCase()}\nWaluta docelowa: ${targetCurrInput.toUpperCase()}\nWartość waluty bazowej: ${value}\nWartość przeliczona: ${exchanged}
     },
 };

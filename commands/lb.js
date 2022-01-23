@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 const { MessageEmbed } = require('discord.js')
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const {HOST, USER, PASSWORD, DATABASE} = require("../config.json");
+// const {HOST, USER, PASSWORD, DATABASE} = require("../config.json");
 
 
 const pool = mysql.createPool({

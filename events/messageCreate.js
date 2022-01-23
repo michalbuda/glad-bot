@@ -22,9 +22,9 @@ module.exports = {
     execute(messageCreate, client) {
         if (messageCreate.author.bot) return
 
-        const channelLogs = client.channels.cache.get('697263658551476285');
-        // channelLogs.send(`**${messageCreate.author.tag}** sent: *"${messageCreate.content}"* at ${messageCreate.createdAt}`)
-        channelLogs.send(`*"${messageCreate.content}"* wysłane przez **${messageCreate.author.tag}** o ${messageCreate.createdAt}`)
+        // const channelLogs = client.channels.cache.get('697263658551476285');
+        // // channelLogs.send(`**${messageCreate.author.tag}** sent: *"${messageCreate.content}"* at ${messageCreate.createdAt}`)
+        // channelLogs.send(`*"${messageCreate.content}"* wysłane przez **${messageCreate.author.tag}** o ${messageCreate.createdAt}`)
         // console.log(`${messageCreate.author.tag} sent: ${messageCreate.content} at ${messageCreate.createdAt}`);
 
         pool.getConnection((err, connection) => {

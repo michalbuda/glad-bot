@@ -66,7 +66,8 @@ module.exports = {
                                 ${getEmote('934541661881655367')} 2. **${res[2].nickname}** ma ${res[2].msgCount} wiadomości (${percentage(2)}%)\n
                                 ${getEmote('934540798366711848')} 3. **${res[3].nickname}** ma ${res[3].msgCount} wiadomości (${percentage(3)}%)\n
                                 ${getEmote('871042445993992212')} 4. **${res[4].nickname}** ma ${res[4].msgCount} wiadomości (${percentage(4)}%)\n
-                                ${getEmote('934532803213811722')} 5. **${res[5].nickname}** ma ${res[5].msgCount} wiadomości (${percentage(5)}%)\n` },
+                                ${getEmote('934532803213811722')} 5. **${res[5].nickname}** ma ${res[5].msgCount} wiadomości (${percentage(5)}%)\n
+                                Pełna lista (*niedługo*) dostępna tutaj: https://gladbot.netlify.app/` },
                                 { name: '\u200B', value: '\u200B' })
                             .setTimestamp()
                             .setFooter(`Powered by ${client.user.username}`, `${client.user.avatarURL()}`);

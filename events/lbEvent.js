@@ -25,7 +25,7 @@ module.exports = {
 
             const hoursLeft = () => {
                 let day = new Date();
-                return (-day + day.setHours(1, 39, 59, 0));//(22, 59, 59, 0)
+                return (-day + day.setHours(22, 59, 59, 0));//(22, 59, 59, 0)
             }
 
             const sendM = () => {
@@ -71,9 +71,9 @@ module.exports = {
                             .setTimestamp()
                             .setFooter(`Powered by ${client.user.username}`, `${client.user.avatarURL()}`);
 
-                        // const channelBot = client.channels.cache.get('678977614215512105');
-                        const channelTest = client.channels.cache.get('878388789108695150');
-                        channelTest.send({embeds: [lbEmbedEvent]});
+                        const channelBot = client.channels.cache.get('678977614215512105');
+                        // const channelTest = client.channels.cache.get('878388789108695150');
+                        channelBot.send({embeds: [lbEmbedEvent]});
                         connection.release()
                         if (error) throw error;
                     })

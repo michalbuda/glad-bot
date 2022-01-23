@@ -1,2 +1,2 @@
 worker: node bot.js
-deployCmd: node deployCmd.jsg
+deployCmd: node deployCmd.js

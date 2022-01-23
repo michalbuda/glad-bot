@@ -58,15 +58,15 @@ module.exports = {
                         res = JSON.parse(JSON.stringify(res))
                         const lbEmbedEvent = new MessageEmbed()
                             .setColor('#FFB100')
-                            .setTitle(`${getGuild('824867261893574717').name} - ranking wysłanych wiadomości`)
+                            .setTitle(`${getGuild('678963461446828052').name} - ranking wysłanych wiadomości`)
                             .setDescription(`Dzisiaj wysłano: **${res[0].msgCount}** wiadomości ${emoji}`)
                             .setThumbnail('https://cdn.discordapp.com/attachments/934461660960276570/934462046714617906/3x.gif')//https://cdn.7tv.app/emote/60b391c23c9b35aea9d2ad42/4x https://media.discordapp.net/attachments/929574114405011458/934446722682339358/ezgif.com-gif-maker.gif
                             .addFields(
-                                { name: 'Pięciu wspaniałych: ', value: `${getEmote('934534030290993152')} 1. **${res[1].nickname}** ma ${res[1].msgCount} wiadomości (${percentage(1)}%)\n
-                                ${getEmote('934541661881655367')} 2. **${res[2].nickname}** ma ${res[2].msgCount} wiadomości (${percentage(2)}%)\n
-                                ${getEmote('934540798366711848')} 3. **${res[3].nickname}** ma ${res[3].msgCount} wiadomości (${percentage(3)}%)\n
-                                ${getEmote('871042445993992212')} 4. **${res[4].nickname}** ma ${res[4].msgCount} wiadomości (${percentage(4)}%)\n
-                                ${getEmote('934532803213811722')} 5. **${res[5].nickname}** ma ${res[5].msgCount} wiadomości (${percentage(5)}%)\n
+                                { name: 'Pięciu wspaniałych: ', value: `${getEmote('934534030290993152')} 1. **${res[1].nickname}** - ${res[1].msgCount} wiadomości (${percentage(1)}%)\n
+                                ${getEmote('934541661881655367')} 2. **${res[2].nickname}** - ${res[2].msgCount} wiadomości (${percentage(2)}%)\n
+                                ${getEmote('934540798366711848')} 3. **${res[3].nickname}** - ${res[3].msgCount} wiadomości (${percentage(3)}%)\n
+                                ${getEmote('871042445993992212')} 4. **${res[4].nickname}** - ${res[4].msgCount} wiadomości (${percentage(4)}%)\n
+                                ${getEmote('934532803213811722')} 5. **${res[5].nickname}** - ${res[5].msgCount} wiadomości (${percentage(5)}%)\n
                                 Pełna lista (*niedługo*) dostępna tutaj: https://gladbot.netlify.app/` },
                                 { name: '\u200B', value: '\u200B' })
                             .setTimestamp()

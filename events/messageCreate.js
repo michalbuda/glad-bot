@@ -19,7 +19,7 @@ const pool = mysql.createPool({
 module.exports = {
     name: 'messageCreate',
     once: false,
-    execute(messageCreate, client) {
+    execute(messageCreate) {
         if (messageCreate.author.bot) return
 
         // const channelLogs = client.channels.cache.get('697263658551476285');

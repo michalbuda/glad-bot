@@ -20,7 +20,7 @@ module.exports = {
             return Math.floor(Math.random() * (max - min)) + min;
         }
         // console.log(`${interaction.user.tag} used interaction: ${interaction}`)
-        const img = await pexels.photos.search({query, per_page: 80}).then(result => result.photos[random(0, 80)]);
+        const img = await pexels.photos.search({query, per_page: 40}).then(result => result.photos[random(0, 25)]);
         // console.log(interaction.options.data)
         if (img === undefined) {
             interaction.reply('Image not found 😥');

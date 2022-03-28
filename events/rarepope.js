@@ -7,7 +7,7 @@ module.exports = {
 
             const hoursLeft = () => {
                 let day = new Date();
-                return (-day + day.setHours(20, 37, 1, 0));
+                return (-day + day.setHours(19, 37, 1, 0));
             }
 
             const sendM = () => {

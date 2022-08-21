@@ -29,7 +29,7 @@ module.exports = {
         const min = messageCreate.createdAt.getMinutes()
         const s = messageCreate.createdAt.getSeconds()
         const y = messageCreate.createdAt.getFullYear()
-        const mth = messageCreate.createdAt.getMonth()
+        const mth = messageCreate.createdAt.getMonth()+1
         const d = messageCreate.createdAt.getDate()
         channelLogs.send(`**${messageCreate.author.tag}** wysłał/a: *"${messageCreate.content}"* o godz. ${h}:${min}:${s} dnia ${d}-${mth}-${y}`)
         // channelLogs.send(`*"${messageCreate.content}"* wysłane przez **${messageCreate.author.tag}** o ${messageCreate.createdAt}`)

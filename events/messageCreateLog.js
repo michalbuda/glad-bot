@@ -25,7 +25,7 @@ module.exports = {
         const channelLogs = messageCreate.client.channels.cache.get('969720165539414098');
         // channelLogs.send(`${messageCreate.author.tag} sent ${messageCreate.content}`)
         // const timestamp = messageCreate.createdAt.toString();
-        const h = messageCreate.createdAt.getHours()+2
+        const h = messageCreate.createdAt.getHours()+1
         const min = messageCreate.createdAt.getMinutes()
         const s = messageCreate.createdAt.getSeconds()
         const y = messageCreate.createdAt.getFullYear()
